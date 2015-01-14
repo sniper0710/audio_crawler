@@ -234,7 +234,11 @@ class audio_crawler():
         myav_new=[]
         myav_new_url=[]
         print "processing PTT"
-        ptt,ptt_url=self.ptt(num=pages*20)
+        try:
+            ptt,ptt_url=self.ptt(num=pages*20)
+        except Exception:
+            ptt=["parsing fail"]
+            ptt_url=[None]
         print "processing AA"
         AA,AA_url=self.AA(pages)
         print "processing myav 二手"
@@ -307,18 +311,18 @@ class audio_crawler():
             page.a( text, class_='internal', href=link )
             page.p("")
         c = page.get_result()
-        '''
+   #     '''
         f=open("a.html",'w')
         f.write(c.encode('utf-8'))
         f.close()
-        '''
+    #    '''
         print "=====generate web page complete====="
         return c
 
 if __name__ == '__main__':
     optParser = OptionParser()
     parser = SafeConfigParser()
-    parser.read('/Users/sniper/crawler.conf')
+    parser.read('crawler.conf')
     optParser.add_option("-s", 
             "--show", 
             action = "store_true", 

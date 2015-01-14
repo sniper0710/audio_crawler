@@ -1,0 +1,14 @@
+[MODIFY]
+**index.py
+-    parser.read('crawler.conf')
++    parser.read('$FULL_PATH/crawler.conf')
+
+-    app.run(debug=True)
++    app.run(debug=True,host=$HOST_NAME,port=$PORT_NUMBER)
+
+
+
+**crawler.conf
+pages : get how many pages per site
+show :  show information in console
+web_root : web root directory, EX : /var/www/html
